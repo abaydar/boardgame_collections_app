@@ -1,3 +1,4 @@
 class Boardgame < ActiveRecord::Base
-    belongs_to :collection
+    has_many :user_boardgames
+    has_many :boardgames, through: :user_boardgames
 end

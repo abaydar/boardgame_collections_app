@@ -7,7 +7,7 @@ class CreateBoardgames < ActiveRecord::Migration[5.2]
       t.integer :min_players
       t.integer :max_players
       t.integer :playing_time
-      t.belongs_to :collection
+      t.belongs_to :user_boardgame
     end
   end
 end
