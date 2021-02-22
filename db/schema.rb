@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_182804) do
+ActiveRecord::Schema.define(version: 2021_02_22_201041) do
 
   create_table "boardgames", force: :cascade do |t|
     t.string "name"
@@ -19,14 +19,12 @@ ActiveRecord::Schema.define(version: 2021_02_22_182804) do
     t.integer "min_players"
     t.integer "max_players"
     t.integer "playing_time"
-    t.integer "user_boardgame_id"
-    t.index ["user_boardgame_id"], name: "index_boardgames_on_user_boardgame_id"
   end
 
   create_table "user_boardgames", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "boardgames_id"
-    t.index ["boardgames_id"], name: "index_user_boardgames_on_boardgames_id"
+    t.integer "boardgame_id"
+    t.index ["boardgame_id"], name: "index_user_boardgames_on_boardgame_id"
     t.index ["user_id"], name: "index_user_boardgames_on_user_id"
   end
 
