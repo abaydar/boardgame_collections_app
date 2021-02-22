@@ -37,6 +37,15 @@ class UsersController < ApplicationController
 
     get '/logout' do 
         logout 
+        redirect '/boardgames'
+    end
+
+    get '/collection/:user' do 
+        @user = User.find_by(username: params[:user])
+        erb :'users/show'
+    end
+
+    post '/collection/:user' do 
     end
 
 

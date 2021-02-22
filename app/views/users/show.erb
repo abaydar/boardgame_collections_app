@@ -1,1 +1,6 @@
-shows a users collection of boardgames
+shows a users collection of boardgames<br>
+<ul>
+<% @user.boardgames.each do |bg| %>
+    <li><%= bg.name %>
+<%end%>
+</ul>

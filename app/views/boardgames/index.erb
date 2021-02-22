@@ -4,4 +4,15 @@ lists all boardgames in db
 - search for a boardgame/user to view their collection ?
 - "add new boardgame" button if not in db
 
+<% @boardgames.each do |bg| %>
+    <h2><%= bg.name %></h2>
+    <p>Year Published: <%=bg.year_published%><br>
+    Min Players: <%=bg.min_players%><br>
+    Max Players: <%=bg.max_players%><br>
+    Playing Time: <%=bg.playing_time%><br>
+    <a href="boardgames/<%=bg.id%>">View</a>
+    </p>
+<%end%>
+
+
 

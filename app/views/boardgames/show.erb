@@ -1,2 +1,9 @@
-shows boardgame with image
-can "add to collection"
+<h2><%=@boardgame.name%></h2><br>
+Year Published: <%=@boardgame.year_published%><br>
+Min Players: <%=@boardgame.min_players%><br>
+Max Players: <%=@boardgame.max_players%><br>
+Playing Time: <%=@boardgame.playing_time%><br>
+<br>
+
+<img style="object-fit: contain; vertical-align:middle;margin:0px 10px;" src="<%=@boardgame.image%>" alt="<%=@boardgame.name%>" width="500" height="500">
+
