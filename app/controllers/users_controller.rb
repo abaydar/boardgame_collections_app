@@ -5,8 +5,14 @@ class UsersController < ApplicationController
     end
 
     post '/login' do 
-        login(params[:username], params[:password])
-        redirect '/boardgames'
+        @user = User.find_by(username: params[:username])
+        if @user && @user.authenticate(params[:password])
+            session[:user_id] = @user.id
+            redirect to "/users/#{@user.username}"
+        else
+            redirect '/login'
+        end
+        
     end
 
     get '/signup' do 
@@ -22,31 +28,26 @@ class UsersController < ApplicationController
         end
     end
 
-    get '/users/:id' do 
+    get '/users/:username' do 
         if !logged_in?
             redirect '/login'
         end
 
-        user = User.find(params[:id])
-        if !user.nil? && user == current_user
+        
+        @user = User.find_by(username: params[:username])
+        if !@user.nil? && @user == current_user
             erb :'users/show'
         else
             redirect '/login'
         end
+
     end
 
     get '/logout' do 
         logout 
-        redirect '/boardgames'
+        redirect '/'
     end
 
-    get '/collection/:user' do 
-        @user = User.find_by(username: params[:user])
-        erb :'users/show'
-    end
-
-    post '/collection/:user' do 
-    end
 
 
 

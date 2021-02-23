@@ -10,6 +10,7 @@ lists all boardgames in db
     Min Players: <%=bg.min_players%><br>
     Max Players: <%=bg.max_players%><br>
     Playing Time: <%=bg.playing_time%><br>
+    <img style="object-fit: contain; vertical-align:middle;margin:0px 10px;" src="<%=bg.image%>" alt="<%=bg.name%>" width="500" height="500"><br>
     <a href="boardgames/<%=bg.id%>">View</a>
     </p>
 <%end%>
