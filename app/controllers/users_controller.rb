@@ -23,10 +23,12 @@ class UsersController < ApplicationController
         user = User.find_by(username: params[:username])
         user_email = User.find_by(email: params[:email])
 
-        if user || user_email
-            "this account already exists"
-            binding.pry
-            erb :'users/new'
+        if params[:name].blank? || params[:username].blank? || params[:email].blank? || params[:password].blank?
+            flash[:message] = "Please fill out all fields"
+            redirect '/signup'
+        elsif user || user_email
+            flash[:message] = "This account already exists!"
+            redirect '/signup'
         else
             new_user = User.new(name: params[:name], username: params[:username], email: params[:email], password: params[:password])
             new_user.save
