@@ -20,11 +20,17 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do 
-        user = User.new(name: params[:name], username: params[:username], email: params[:email], password: params[:password])
-        if user.save
-            redirect '/login'
-        else
+        user = User.find_by(username: params[:username])
+        user_email = User.find_by(email: params[:email])
+
+        if user || user_email
+            "this account already exists"
+            binding.pry
             erb :'users/new'
+        else
+            new_user = User.new(name: params[:name], username: params[:username], email: params[:email], password: params[:password])
+            new_user.save
+            redirect '/login'
         end
     end
 

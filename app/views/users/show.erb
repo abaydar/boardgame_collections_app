@@ -1,6 +1,6 @@
-shows a users collection of boardgames<br>
-
+<ul>
 <% @user.boardgames.each do |bg| %>
-    <h3><%= bg.name %></h3><br>
-    <img style="object-fit: contain; vertical-align:middle;margin:0px 10px;" src="<%=bg.image%>" alt="<%=bg.name%>" width="500" height="500"><br>
+   <li><%= bg.name %><br>
+    <img style="object-fit: contain;" src="<%=bg.image%>" alt="<%=bg.name%>" width="300" height="300"><br>
 <%end%>
+</ul>

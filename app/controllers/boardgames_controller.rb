@@ -6,17 +6,20 @@ class BoardgamesController < ApplicationController
     end
 
     get '/boardgames/new' do 
-        erb :'boardgames/new'
+        if !logged_in?
+            redirect '/login'
+        else    
+            erb :'boardgames/new'
+        end
     end
 
     post '/boardgames' do 
-        bg = Boardgame.create(params[:boardgame])
+        bg = Boardgame.new(params[:boardgame])
         user = User.find(session[:user_id])
         user.boardgames << bg 
         bg.save
+
     end
-
-
 
     get '/boardgames/:id' do
         @boardgame = Boardgame.find(params[:id])
@@ -25,7 +28,11 @@ class BoardgamesController < ApplicationController
     end
 
     get '/boardgames/:id/edit' do 
-        erb :'boardgames/edit'
+        if !logged_in?
+            redirect '/login'
+        else
+            erb :'boardgames/edit'
+        end
     end
 
 
