@@ -1,1 +1,17 @@
-form to submit a new game
+<h2>Create a new boardgame</h2>
+
+<form action="/boardgames" method="POST">
+<label>Name: </label>
+<input type="text" name="boardgame[name]"><br>
+<label>Year Published: </label>
+<input type="text" name="boardgame[year_published]"><br>
+<label>Image Url: </label>
+<input type="text" name="boardgame[image]"><br>
+<label>Min Players: </label>
+<input type="text" name="boardgame[min_players]"><br>
+<label>Max Players: </label>
+<input type="text" name="boardgame[max_players]"><br>
+<label>Playing Time:</label>
+<input type="text" name="boardgame[playing_time]"><br>
+<input type="submit" value="Create">
+</form>

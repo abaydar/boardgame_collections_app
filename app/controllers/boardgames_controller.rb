@@ -10,8 +10,13 @@ class BoardgamesController < ApplicationController
     end
 
     post '/boardgames' do 
-
+        bg = Boardgame.create(params[:boardgame])
+        user = User.find(session[:user_id])
+        user.boardgames << bg 
+        bg.save
     end
+
+
 
     get '/boardgames/:id' do
         @boardgame = Boardgame.find(params[:id])
