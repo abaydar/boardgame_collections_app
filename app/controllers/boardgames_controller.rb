@@ -16,9 +16,10 @@ class BoardgamesController < ApplicationController
     post '/boardgames' do 
         bg = Boardgame.new(params[:boardgame])
         user = User.find(session[:user_id])
+        bg.creator_id = user.id
         user.boardgames << bg 
         bg.save
-
+        redirect "/boardgames/#{bg.id}"
     end
 
     get '/boardgames/:id' do
