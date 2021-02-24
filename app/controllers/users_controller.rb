@@ -8,7 +8,7 @@ class UsersController < ApplicationController
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
-            redirect to "/users/#{@user.username}"
+            redirect to "/users/#{@user.id}"
         else
             redirect '/login'
         end
@@ -36,13 +36,12 @@ class UsersController < ApplicationController
         end
     end
 
-    get '/users/:username' do 
+    get '/users/:id' do 
         if !logged_in?
             redirect '/login'
         end
 
-        
-        @user = User.find_by(username: params[:username])
+        @user = User.find_by(id: params[:id])
         if !@user.nil? && @user == current_user
             erb :'users/show'
         else
@@ -54,6 +53,35 @@ class UsersController < ApplicationController
     get '/logout' do 
         logout 
         redirect '/'
+    end
+
+    get '/users/:id/edit' do 
+        @user = User.find_by(id: params[:id])
+
+        if logged_in? && current_user.id == @user.id
+            erb :'users/edit'
+        else
+            redirect '/login'
+        end
+    end
+
+    patch '/users/:id' do 
+        
+        params[:user][:boardgame_ids].each do |id|
+            if !current_user.boardgames.include?(Boardgame.find_by(id: id))
+                current_user.boardgames << Boardgame.find_by(id: id)
+            end
+        end
+        redirect "/users/#{current_user.id}"
+    end
+
+private 
+
+    def redirect_if_not_authorized
+        if @boardgame.creator_id != current_user.id 
+            flash[:message] = "You can't edit a post you haven't created"
+            redirect '/boardgames'
+        end
     end
 
 
