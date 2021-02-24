@@ -19,7 +19,9 @@
         <%= yield %>
 
       <footer class="branding">
-        <a href="/logout">Logout</a><br><br>
+        <%if logged_in?%>
+          <a href="/logout">Logout</a><br><br>
+        <%end%>
         <small>&copy; 2021 <strong>BoardgameCollectionsApp</strong></small>
       </footer>
     </div>

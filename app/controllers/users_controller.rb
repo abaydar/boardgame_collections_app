@@ -68,20 +68,16 @@ class UsersController < ApplicationController
     patch '/users/:id' do 
         
         params[:user][:boardgame_ids].each do |id|
+            # if current_user.boardgames.include?(Boardgame.find_by(id:id)) && !params[:user][:boardgame_ids].include?(Boardgame.find_by(id:id))
+            #     current_user.boardgames.delete(Boardgame.find_by(id: id))
+            #     binding.pry
+            # end
             if !current_user.boardgames.include?(Boardgame.find_by(id: id))
                 current_user.boardgames << Boardgame.find_by(id: id)
             end
+            
         end
         redirect "/users/#{current_user.id}"
-    end
-
-private 
-
-    def redirect_if_not_authorized
-        if @boardgame.creator_id != current_user.id 
-            flash[:message] = "You can't edit a post you haven't created"
-            redirect '/boardgames'
-        end
     end
 
 
