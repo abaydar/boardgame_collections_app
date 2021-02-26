@@ -1,13 +1,18 @@
 
-<form action="/users/<%=@user.id%>" method="POST">
-<input type="hidden" name="_method" value="patch">
-<label>Add Boardgames to Collection</label>
-<br>
-<% Boardgame.all.each do |bg| %>
-   <input type="checkbox" name="user[boardgame_ids][]" id="<%=bg.id%>" value="<%=bg.id%>" <%='checked' if @user.boardgames.include?(bg) %>><%= bg.name %><br>
-<%end%>
-<input type="submit" value="Update collection">
-</form><br>
+<div class="container">
+
+      <form action="/users/<%=@user.id%>" method="POST">
+      <input type="hidden" name="_method" value="patch">
+         <h1>Add Boardgames to Collection</h1>
+      <div class="row">
+         <strong><% Boardgame.all.each do |bg| %>
+            <input type="checkbox" name="user[boardgame_ids][]" id="<%=bg.id%>" value="<%=bg.id%>" <%='checked' if @user.boardgames.include?(bg) %>><%= bg.name %><br>
+         <%end%></strong>
+      </div>
+         <input type="submit" value="Update collection">
+      </form><br>
+
 <a href='/boardgames/new'>Add a new boardgame</a>
 
 
+</div>
