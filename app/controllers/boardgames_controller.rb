@@ -61,7 +61,7 @@ private
 
     def redirect_if_not_authorized
         if @boardgame.creator_id != current_user.id 
-            flash[:message] = "You can't edit a post you haven't created"
+            flash[:message] = "You can't edit a boardgame you haven't created"
             redirect '/boardgames'
         end
     end

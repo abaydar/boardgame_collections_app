@@ -41,7 +41,7 @@ class UsersController < ApplicationController
             redirect '/login'
         end
 
-        @user = User.find_by(id: params[:id])
+        get_user
         if !@user.nil? && @user == current_user
             erb :'users/show'
         else
@@ -56,9 +56,9 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id/edit' do 
-        @user = User.find_by(id: params[:id])
-
-        if logged_in? && current_user.id == @user.id
+        get_user
+        redirect_if_not_authorized
+        if logged_in?
             erb :'users/edit'
         else
             redirect '/login'
@@ -66,7 +66,8 @@ class UsersController < ApplicationController
     end
 
     patch '/users/:id' do 
-        @user = User.find_by(id: params[:id])
+        get_user
+        redirect_if_not_authorized
 
         params[:user][:boardgame_ids].each do |id|
             if !@user.boardgames.include?(Boardgame.find_by(id: id))
@@ -78,11 +79,25 @@ class UsersController < ApplicationController
     end
 
     post '/users/:id/boardgames/:bg_id' do 
-        @user = User.find_by(id: params[:id])
+        get_user
+        redirect_if_not_authorized
         @user.boardgames.delete(Boardgame.find_by(id: params[:bg_id]))
         binding.pry
         redirect "/users/#{@user.id}"
     end
+
+private
+
+    def get_user
+        @user = User.find_by(id: params[:id])
+    end
+
+    def redirect_if_not_authorized
+        if @user.id != current_user.id 
+            flash[:message] = "You can't edit someone else's collection"
+            redirect "/users/#{@user.id}"
+        end
+end
 
 
 end
