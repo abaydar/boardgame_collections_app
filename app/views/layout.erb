@@ -14,10 +14,23 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+
+    
+    
+  
     <div class="wrapper">
+      <header>
+      <a href="/boardgames">All Games</a>
+      <%if logged_in?%>
+        <a href="/users/<%=current_user.id%>">Your Collection</a>
+      <%end%>
+      <%if !logged_in?%>
+        <a href="/login">Login</a>
+      <%end%>
+      </header>
 
         <%= yield %>
-
+      
       <footer class="branding">
         <%if logged_in?%>
           <a href="/logout">Logout</a><br><br>

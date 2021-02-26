@@ -66,21 +66,23 @@ class UsersController < ApplicationController
     end
 
     patch '/users/:id' do 
-        
+        @user = User.find_by(id: params[:id])
+
         params[:user][:boardgame_ids].each do |id|
-            # if current_user.boardgames.include?(Boardgame.find_by(id:id)) && !params[:user][:boardgame_ids].include?(Boardgame.find_by(id:id))
-            #     current_user.boardgames.delete(Boardgame.find_by(id: id))
-            #     binding.pry
-            # end
-            if !current_user.boardgames.include?(Boardgame.find_by(id: id))
-                current_user.boardgames << Boardgame.find_by(id: id)
+            if !@user.boardgames.include?(Boardgame.find_by(id: id))
+                @user.boardgames << Boardgame.find_by(id: id)
             end
             
         end
-        redirect "/users/#{current_user.id}"
+        redirect "/users/#{@user.id}"
     end
 
-
+    post '/users/:id/boardgames/:bg_id' do 
+        @user = User.find_by(id: params[:id])
+        @user.boardgames.delete(Boardgame.find_by(id: params[:bg_id]))
+        binding.pry
+        redirect "/users/#{@user.id}"
+    end
 
 
 end
