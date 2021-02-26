@@ -65,6 +65,11 @@ class UsersController < ApplicationController
 
     get '/users/:id/edit' do 
         get_user
+
+        if !logged_in?
+            redirect '/login'
+        end
+
         redirect_if_not_authorized
         if logged_in?
             erb :'users/edit'
@@ -75,6 +80,7 @@ class UsersController < ApplicationController
 
     patch '/users/:id' do 
         get_user
+  
         redirect_if_not_authorized
 
         params[:user][:boardgame_ids].each do |id|
@@ -105,7 +111,12 @@ private
             flash[:message] = "You can't edit someone else's collection"
             redirect "/users/#{@user.id}"
         end
-end
+    end
 
+    def redirect_to_login
+        if !logged_in?
+            redirect '/login'
+        end
+    end
 
 end

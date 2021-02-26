@@ -1,8 +1,18 @@
 @media screen {
 
+  img {
+    object-fit: contain; 
+    vertical-align: middle;
+    width: 100%;
+    margin:10px 10px;
+  }
+
   a {
-    text-shadow: 1px 1px #555;
+    border: 2px #006600;
+    border-style: double;
     text-decoration: none;
+    background-color: #f2e6ff;
+    padding: 3px;
   }
 
   a:hover {
@@ -15,7 +25,9 @@
   }
 
   header a {
+    float: left;
     text-align: center;
+    width: 30%;
   }
 
   /* --- Welcome Page Styles --- */
@@ -42,6 +54,7 @@
     font-size: 36px;
     line-height: 54px;
     text-shadow: 1px 1px #555;
+    text-align: center;
   }
 
   h2 {
