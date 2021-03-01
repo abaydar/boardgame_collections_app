@@ -5,14 +5,15 @@
       <input type="hidden" name="_method" value="patch">
          <h1>Add Boardgames to Collection</h1>
       <div class="row">
-         <strong><% Boardgame.all.each do |bg| %>
+         <strong><% Boardgame.alphabetize.each do |bg| %>
             <input type="checkbox" name="user[boardgame_ids][]" id="<%=bg.id%>" value="<%=bg.id%>" <%='checked' if @user.boardgames.include?(bg) %>><%= bg.name %><br>
          <%end%></strong>
       </div>
+      <br>
          <input type="submit" value="Update collection">
       </form><br>
 
-<a href='/boardgames/new'>Add a new boardgame</a>
+<em>Don't see the game you're looking for? </em><a href='/boardgames/new'>Add a new boardgame</a>
 
 
 </div>

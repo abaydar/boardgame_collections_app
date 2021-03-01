@@ -27,11 +27,16 @@ class UsersController < ApplicationController
             redirect "/users/#{current_user.id}"
         end
     end
+    
+    get '/users/:id/delete' do
+        get_user
+        erb :'users/delete'
+    end
 
     post '/signup' do 
         user = User.find_by(username: params[:username])
         user_email = User.find_by(email: params[:email])
-
+        
         if params[:name].blank? || params[:username].blank? || params[:email].blank? || params[:password].blank?
             flash[:message] = "Please fill out all fields"
             redirect '/signup'
@@ -44,33 +49,34 @@ class UsersController < ApplicationController
             redirect '/login'
         end
     end
-
+    
+    
     get '/users/:id' do 
         if !logged_in?
             redirect '/login'
         end
-
+        
         get_user
         if !@user.nil? && @user == current_user
             erb :'users/show'
         else
             redirect '/login'
         end
-
+        
     end
-
+    
     get '/logout' do 
         logout 
         redirect '/'
     end
-
+    
     get '/users/:id/edit' do 
         get_user
-
+        
         if !logged_in?
             redirect '/login'
         end
-
+        
         redirect_if_not_authorized
         if logged_in?
             erb :'users/edit'
@@ -78,6 +84,7 @@ class UsersController < ApplicationController
             redirect '/login'
         end
     end
+    
 
     patch '/users/:id' do 
         get_user
@@ -99,6 +106,14 @@ class UsersController < ApplicationController
         @user.boardgames.delete(Boardgame.find_by(id: params[:bg_id]))
         binding.pry
         redirect "/users/#{@user.id}"
+    end
+
+
+    delete '/users/:id' do
+        get_user
+        redirect_if_not_authorized
+        @user.delete
+        redirect '/boardgames'
     end
 
 private

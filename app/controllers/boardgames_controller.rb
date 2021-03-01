@@ -63,10 +63,12 @@ class BoardgamesController < ApplicationController
     end
 
     post '/search' do
-        input = params[:name]
-        words = input.split
-        name = words.map {|w| w.capitalize}.join(" ")
-        bg = Boardgame.find_by(name: name)
+        # input = params[:name]
+        # words = input.split
+        # name = words.map {|w| w.capitalize}.join(" ")
+        # binding.pry
+        # bg = Boardgame.find_by(name: name)
+        bg = Boardgame.find_by(name: params[:name])
         if bg 
             redirect "/boardgames/#{bg.id}"
         else
