@@ -99,8 +99,9 @@ class UsersController < ApplicationController
     post '/users/:id/boardgames/:bg_id' do 
         get_user
         redirect_if_not_authorized
-        @user.boardgames.delete(Boardgame.find_by(id: params[:bg_id]))
-        binding.pry
+        bg = Boardgame.find_by(id: params[:bg_id])
+        @user.boardgames.delete(bg)
+        flash[:message] = "#{bg.name} has been removed from your collection"
         redirect "/users/#{@user.id}"
     end
 
