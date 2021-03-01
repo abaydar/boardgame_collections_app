@@ -35,13 +35,17 @@
       <%end%>
         <%if logged_in?%>
           <a href="/logout">Logout</a><br><br>
-        <%end%>
+        <%end%><br><br>
+        <form action="/search" method="POST">
+        <strong>Search boardgames by name: </strong><input type="text" name="name">
+        <input type="submit" value="Search">
+        </form>
       </header>
 
         <%= yield %>
       
       <footer class="branding">
-        <small>&copy; 2021 <strong>BoardgameCollectionsApp</strong></small>
+        <small>&copy; 2021 <strong>BoardgameCollectionsApp &hearts;</strong></small>
       </footer>
     </div>
 

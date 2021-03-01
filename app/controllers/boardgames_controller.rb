@@ -62,6 +62,23 @@ class BoardgamesController < ApplicationController
         redirect '/boardgames'
     end
 
+    post '/search' do
+        input = params[:name]
+        words = input.split
+        name = words.map {|w| w.capitalize}.join(" ")
+        bg = Boardgame.find_by(name: name)
+        if bg 
+            redirect "/boardgames/#{bg.id}"
+        else
+            flash[:message] = "Can't find a boardgame with this name in the database. Create a new one?"
+            if logged_in?
+                redirect '/boardgames/new'
+            else
+                redirect '/login'
+            end
+        end
+    end
+
 
 
 private 
