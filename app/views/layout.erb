@@ -27,7 +27,7 @@
     <div class="wrapper">
       <header>
       <a href="/boardgames">All Games</a>
-      <a href="/users">User Collections</a>
+      <a href="/users">User BGCs</a>
 
       <%if !logged_in?%>
         <a href="/login">Login</a>
@@ -35,20 +35,20 @@
       <%end%>
 
       <%if logged_in?%>
-        <a href="/users/<%=current_user.id%>">Your Collection</a>
+        <a href="/users/<%=current_user.id%>">Your BGC</a>
         <a href="/logout">Logout</a><br><br>
       <%end%><br><br>
 
       <form action="/search" method="POST">
         <strong style="color: #660066;">Search boardgames by name: </strong><input type="text" name="name">
         <input type="submit" value="Search">
-      </form>
+      </form><br>
       </header>
 
         <%= yield %>
       
       <footer class="branding">
-        <small>&copy; 2021 <strong>BoardgameCollectionsApp &hearts;</strong></small>
+        <small>&copy; 2021 <strong>BGC &hearts;</strong></small>
       </footer>
     </div>
 

@@ -1,6 +1,6 @@
 <h1><%=@user.name%>'s Collection</h1><br>
 <% @user.boardgames.each do |bg| %>
-   <h2><%= bg.name %></h2><br>
+   <div class="bg-name"><%= bg.name %></div><br>
     <img style="object-fit: contain;" src="<%=bg.image%>" alt="<%=bg.name%>" width="300" height="300"><br>
     <form action="/users/<%=@user.id%>/boardgames/<%=bg.id%>" method="POST">
     <input type="submit" value="Remove from collection" name="boardgame[name]" id="<%=bg.name%>"><br>

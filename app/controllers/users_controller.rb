@@ -73,12 +73,8 @@ class UsersController < ApplicationController
     get '/users/:id/edit' do 
         get_user
         
-        if !logged_in?
-            redirect '/login'
-        end
-        
-        redirect_if_not_authorized
         if logged_in?
+            redirect_if_not_authorized
             erb :'users/edit'
         else
             redirect '/login'
@@ -113,7 +109,7 @@ class UsersController < ApplicationController
         get_user
         redirect_if_not_authorized
         @user.delete
-        redirect '/boardgames'
+        redirect '/'
     end
 
 private
