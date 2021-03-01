@@ -7,3 +7,6 @@
 
 <img style="object-fit: contain; vertical-align:middle;margin:0px 10px;" src="<%=@boardgame.image%>" alt="<%=@boardgame.name%>" width="500" height="500">
 
+<% if current_user && current_user.id == @boardgame.creator_id %>
+    <a href="/boardgames/<%=@boardgame.id%>/edit">Edit</a>
+<%end%>

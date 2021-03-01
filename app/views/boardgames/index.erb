@@ -1,9 +1,8 @@
 <br>
 <br>
 <% @boardgames.each do |bg| %>
-    <div class=bg-name><%= bg.name %></div>
+    <div class=bg-name><a href="boardgames/<%=bg.id%>" style="font-size: 22px;"><%= bg.name %></a></div>
     <img src="<%=bg.image%>" alt="<%=bg.name%>"><br>
-    <a href="boardgames/<%=bg.id%>">View</a>
     <% if current_user && current_user.id == bg.creator_id %>
         <a href="/boardgames/<%=bg.id%>/edit">Edit</a>
     <%end%>

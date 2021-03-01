@@ -2,24 +2,24 @@
 
 <form action="/boardgames/<%=@boardgame.id%>" method="POST">
 <input type="hidden" name="_method" value="patch">
-<label>Name: </label>
-<input type="text" name="boardgame[name]" value="<%=@boardgame.name%>"><br>
-<label>Year Published: </label>
-<input type="text" name="boardgame[year_published]" value="<%=@boardgame.year_published%>"><br>
-<label>Image Url: </label>
-<input type="text" name="boardgame[image]" value="<%=@boardgame.image%>"><br>
-<label>Min Players: </label>
-<input type="text" name="boardgame[min_players]" value="<%=@boardgame.min_players%>"><br>
-<label>Max Players: </label>
-<input type="text" name="boardgame[max_players]" value="<%=@boardgame.max_players%>"><br>
-<label>Playing Time:</label>
-<input type="text" name="boardgame[playing_time]" value="<%=@boardgame.playing_time%>"><br>
-<input type="submit" value="Edit Boardgame">
+<strong>Name: </strong>
+<input type="text" name="boardgame[name]" value="<%=@boardgame.name%>"><br><br>
+<strong>Year Published: </strong>
+<input type="text" name="boardgame[year_published]" value="<%=@boardgame.year_published%>"><br><br>
+<strong>Image Url: </strong>
+<input type="text" name="boardgame[image]" value="<%=@boardgame.image%>"><br><br>
+<strong>Min Players: </strong>
+<input type="text" name="boardgame[min_players]" value="<%=@boardgame.min_players%>"><br><br>
+<strong>Max Players: </strong>
+<input type="text" name="boardgame[max_players]" value="<%=@boardgame.max_players%>"><br><br>
+<strong>Playing Time:</strong>
+<input type="text" name="boardgame[playing_time]" value="<%=@boardgame.playing_time%>"><br><br>
+<input type="submit" value="Edit Boardgame" style="font-size: 16px;"><br><br>
 </form>
 
 <form action="/boardgames/<%=@boardgame.id%>" method="POST">
     <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="Delete">
+    <input type="submit" value="Delete"style="font-size: 16px;">
 
 </form>
 
