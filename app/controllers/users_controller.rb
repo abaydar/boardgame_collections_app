@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+    get '/users' do 
+        @users = User.all
+        erb :'users/index'
+    end
+
     get '/login' do 
         if !logged_in?
             erb :'users/login'
@@ -52,17 +57,12 @@ class UsersController < ApplicationController
     
     
     get '/users/:id' do 
+        get_user
         if !logged_in?
             redirect '/login'
-        end
-        
-        get_user
-        if !@user.nil? && @user == current_user
-            erb :'users/show'
         else
-            redirect '/login'
-        end
-        
+           erb :'users/show'
+        end             
     end
     
     get '/logout' do 

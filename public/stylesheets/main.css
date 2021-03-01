@@ -36,11 +36,31 @@
     text-decoration: none;
     background-color: #f2e6ff;
     padding: 3px;
+    font-family: 'Lucida Sans';
+    font-size: 14px;
   }
 
   a:hover {
     cursor: pointer;
     background-color: #d1d1e0;
+  }
+
+  .user-links{
+    text-align: center;
+  }
+
+  .bg-name{
+    text-align: center;
+    font-style: oblique;
+    border-bottom: 2px solid #ccc;
+    font-size: 22px;
+    line-height: 36px;
+  }
+
+  .welcome-page{
+    text-align: center;
+    font-size: 22px;
+    line-height: 36px;
   }
 
   header {
@@ -50,7 +70,8 @@
   header a {
     float: left;
     text-align: center;
-    width: 30%;
+    width: 22%;
+
   }
 
   /* --- Welcome Page Styles --- */

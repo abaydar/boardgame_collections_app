@@ -27,19 +27,22 @@
     <div class="wrapper">
       <header>
       <a href="/boardgames">All Games</a>
-      <%if logged_in?%>
-        <a href="/users/<%=current_user.id%>">Your Collection</a>
-      <%end%>
+      <a href="/users">User Collections</a>
+
       <%if !logged_in?%>
         <a href="/login">Login</a>
+        <a href="/signup">Sign up</a>
       <%end%>
-        <%if logged_in?%>
-          <a href="/logout">Logout</a><br><br>
-        <%end%><br><br>
-        <form action="/search" method="POST">
-        <strong>Search boardgames by name: </strong><input type="text" name="name">
+
+      <%if logged_in?%>
+        <a href="/users/<%=current_user.id%>">Your Collection</a>
+        <a href="/logout">Logout</a><br><br>
+      <%end%><br><br>
+
+      <form action="/search" method="POST">
+        <strong style="color: #660066;">Search boardgames by name: </strong><input type="text" name="name">
         <input type="submit" value="Search">
-        </form>
+      </form>
       </header>
 
         <%= yield %>

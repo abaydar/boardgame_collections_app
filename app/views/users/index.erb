@@ -1,0 +1,5 @@
+<br>
+<br>
+<% @users.each do |user| %>
+    <a href="/users/<%=user.id%>"><%= user.name %>'s Collection</a><br><br>
+<%end%>
