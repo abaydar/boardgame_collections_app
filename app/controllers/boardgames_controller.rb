@@ -7,6 +7,7 @@ class BoardgamesController < ApplicationController
 
     get '/boardgames/new' do 
         if !logged_in?
+            flash[:message] = "Please login first!"
             redirect '/login'
         else    
             erb :'boardgames/new'
@@ -14,18 +15,28 @@ class BoardgamesController < ApplicationController
     end
 
     post '/boardgames' do 
-        if logged_in?
+        boardgame = Boardgame.find_by_name(params[:boardgame][:name])
+
+        if !logged_in?
+            flash[:message] = "Plase log in first!"
+            redirect '/login'
+        elsif params[:boardgame][:name].blank?
+            flash[:message] = "Please input a name"
+            redirect '/boardgames/new'
+        elsif boardgame
+            flash[:message] = "This game already exists!"
+            redirect '/boardgames/new'
+        else
             bg = Boardgame.new(params[:boardgame])
             bg.creator_id = current_user.id
             current_user.boardgames << bg 
             bg.save
             redirect "/boardgames/#{bg.id}"
-        else 
-            redirect '/login'
         end
     end
 
     get '/boardgames/:id' do
+        
         get_boardgame
 
         erb :'boardgames/show'

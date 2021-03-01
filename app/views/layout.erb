@@ -13,6 +13,13 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+
+  <% flash.keys.each do |type|%>
+    <div id="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <%= flash[type]%>
+    </div>
+  <%end%>
     
     
 
