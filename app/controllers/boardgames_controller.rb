@@ -38,7 +38,7 @@ class BoardgamesController < ApplicationController
     get '/boardgames/:id' do
         
         get_boardgame
-
+        
         erb :'boardgames/show'
     end
 
@@ -66,9 +66,9 @@ class BoardgamesController < ApplicationController
         # input = params[:name]
         # words = input.split
         # name = words.map {|w| w.capitalize}.join(" ")
-        # binding.pry
         # bg = Boardgame.find_by(name: name)
-        bg = Boardgame.find_by(name: params[:name])
+        input = params[:name].capitalize
+        bg = Boardgame.find_by(name: input)
         if bg 
             redirect "/boardgames/#{bg.id}"
         else

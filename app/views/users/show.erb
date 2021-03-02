@@ -4,7 +4,7 @@
     <a href="/users/<%=@user.id%>/edit">Add Games to Collection</a><br><br>
 <%end%>
 
-<% @user.boardgames.each do |bg| %>
+<% @user.boardgames.alphabetize.each do |bg| %>
    <div class="bg-name"><%= bg.name %></div><br>
     <img style="object-fit: contain;" src="<%=bg.image%>" alt="<%=bg.name%>" width="300" height="300"><br>
     <%if current_user == @user%>
