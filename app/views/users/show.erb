@@ -10,7 +10,6 @@
     <%if current_user == @user%>
         <form action="/users/<%=@user.id%>/boardgames/<%=bg.id%>" method="POST">
         <input type="submit" value="Remove from collection" name="boardgame[name]" id="<%=bg.name%>"><br>
-        <input type="hidden" value="<%=bg.name%>">
         </form><br>
     <%end%>
 <%end%>

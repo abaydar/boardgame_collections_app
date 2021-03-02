@@ -90,9 +90,9 @@ class UsersController < ApplicationController
         params[:user][:boardgame_ids].each do |id|
             if !@user.boardgames.include?(Boardgame.find_by(id: id))
                 @user.boardgames << Boardgame.find_by(id: id)
-            end
-            
+            end  
         end
+
         redirect "/users/#{@user.id}"
     end
 
