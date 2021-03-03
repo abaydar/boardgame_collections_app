@@ -21,3 +21,5 @@ For pull requests, please visit: <https://github.com/abaydar/boardgame_collectio
 For bug reports, please visit: <https://github.com/abaydar/boardgame_collections_app/issues>
 
 ### License 
+
+This application is available as open source under the terms in the MIT License, found here: <https://opensource.org/licenses/MIT>
