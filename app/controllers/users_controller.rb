@@ -51,7 +51,8 @@ class UsersController < ApplicationController
         else
             new_user = User.new(name: params[:name], username: params[:username], email: params[:email], password: params[:password])
             new_user.save
-            redirect '/login'
+            session[:user_id] = new_user.id
+            redirect "/users/#{new_user.id}"
         end
     end
     

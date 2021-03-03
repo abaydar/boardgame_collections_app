@@ -63,12 +63,8 @@ class BoardgamesController < ApplicationController
     end
 
     post '/search' do
-        # input = params[:name]
-        # words = input.split
-        # name = words.map {|w| w.capitalize}.join(" ")
-        # bg = Boardgame.find_by(name: name)
-        input = params[:name].capitalize
-        bg = Boardgame.find_by(name: input)
+        input = params[:name]
+        bg = Boardgame.where('name LIKE ?', "%#{input}%")[0]
         if bg 
             redirect "/boardgames/#{bg.id}"
         else
