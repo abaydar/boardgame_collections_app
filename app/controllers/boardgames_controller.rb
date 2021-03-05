@@ -36,9 +36,7 @@ class BoardgamesController < ApplicationController
     end
 
     get '/boardgames/:id' do
-        
         get_boardgame
-        
         erb :'boardgames/show'
     end
 

@@ -56,7 +56,6 @@ class UsersController < ApplicationController
         end
     end
     
-    
     get '/users/:id' do 
         get_user
         if !logged_in?
@@ -81,7 +80,6 @@ class UsersController < ApplicationController
             redirect '/login'
         end
     end
-    
 
     patch '/users/:id' do 
         get_user
@@ -124,12 +122,6 @@ private
         if @user.id != current_user.id 
             flash[:message] = "You can't edit someone else's collection"
             redirect "/users/#{@user.id}"
-        end
-    end
-
-    def redirect_to_login
-        if !logged_in?
-            redirect '/login'
         end
     end
 
